@@ -29,18 +29,22 @@ log() {
 echo $separator;
 log "Preparing Blackfire configuration..." $magenta
 
-sed -i "s@^blackfire.agent_socket = .*@blackfire.agent_socket = $BLACKFIRE_PORT@" $BLACKFIRE_CONFIG_FILE
-sed -i "s@^;blackfire.log_level = .*@blackfire.log_level = $BLACKFIRE_ENV_BLACKFIRE_LOG_LEVEL@" $BLACKFIRE_CONFIG_FILE
-sed -i "s@^;blackfire.server_id.*@blackfire.server_id = $BLACKFIRE_ENV_BLACKFIRE_SERVER_ID@" $BLACKFIRE_CONFIG_FILE
-sed -i "s@^;blackfire.server_token.*@blackfire.server_token = $BLACKFIRE_ENV_BLACKFIRE_SERVER_TOKEN@" $BLACKFIRE_CONFIG_FILE
-sed -i "s@^;blackfire.log_file = .*@blackfire.log_file = $BLACKFIRE_LOG_FILE@" $BLACKFIRE_CONFIG_FILE
+if [ -z "${BLACKFIRE_PORT:-}" ]; then
+  log "One or more variables are undefined. Skipping..." $red
+else
+	sed -i "s@^blackfire.agent_socket = .*@blackfire.agent_socket = $BLACKFIRE_PORT@" $BLACKFIRE_CONFIG_FILE
+	sed -i "s@^;blackfire.log_level = .*@blackfire.log_level = $BLACKFIRE_ENV_BLACKFIRE_LOG_LEVEL@" $BLACKFIRE_CONFIG_FILE
+	sed -i "s@^;blackfire.server_id.*@blackfire.server_id = $BLACKFIRE_ENV_BLACKFIRE_SERVER_ID@" $BLACKFIRE_CONFIG_FILE
+	sed -i "s@^;blackfire.server_token.*@blackfire.server_token = $BLACKFIRE_ENV_BLACKFIRE_SERVER_TOKEN@" $BLACKFIRE_CONFIG_FILE
+	sed -i "s@^;blackfire.log_file = .*@blackfire.log_file = $BLACKFIRE_LOG_FILE@" $BLACKFIRE_CONFIG_FILE
 
-log "Successfully configuration with the following properties:" $cyan
-log "blackfire.agent_socket = $BLACKFIRE_PORT" $yellow
-log "blackfire.log_level = $BLACKFIRE_ENV_BLACKFIRE_LOG_LEVEL" $yellow
-log "blackfire.server_id = $BLACKFIRE_ENV_BLACKFIRE_SERVER_ID" $yellow
-log "blackfire.server_token = $BLACKFIRE_ENV_BLACKFIRE_SERVER_TOKEN" $yellow
-log "blackfire.log_file = $BLACKFIRE_LOG_FILE" $yellow
+	log "Successfully configuration with the following properties:" $cyan
+	log "blackfire.agent_socket = $BLACKFIRE_PORT" $yellow
+	log "blackfire.log_level = $BLACKFIRE_ENV_BLACKFIRE_LOG_LEVEL" $yellow
+	log "blackfire.server_id = $BLACKFIRE_ENV_BLACKFIRE_SERVER_ID" $yellow
+	log "blackfire.server_token = $BLACKFIRE_ENV_BLACKFIRE_SERVER_TOKEN" $yellow
+	log "blackfire.log_file = $BLACKFIRE_LOG_FILE" $yellow
+fi
 
 log "All done. Good to go!" $green
 echo $separator;
