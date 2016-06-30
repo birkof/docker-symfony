@@ -181,7 +181,7 @@ alias kernel-bit='uname -m'
 alias composer="php -d memory_limit=-1 /usr/local/bin/composer $@"
 
 # SSH Keys
-alias my_ssh_keys='/bin/chmod +x ~/ssh_setup.sh && ~/ssh_setup.sh'
+alias my_ssh_keys='/bin/chmod 0600 ~/.ssh/$1 && eval "$(ssh-agent -s)" && /usr/bin/ssh-add -k ~/.ssh/$1'
 
 # Weather in Bucharest
 alias my_weather_in_bucharest='curl -4 http://wttr.in/Bucharest'
