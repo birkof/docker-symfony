@@ -88,7 +88,7 @@ RUN apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Exposed port/s (web & xdebug)
-EXPOSE 80 9000
+EXPOSE 22 80 9000
 
 # Working dir
 WORKDIR /var/www
