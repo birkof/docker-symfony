@@ -29,6 +29,7 @@ log "Preparing Git configuration..." $magenta
 if [[ -z $GIT_CONFIG_NAME || -z $GIT_CONFIG_EMAIL ]]; then
   log "One or more variables are undefined. Skipping..." $red
 else
+    /usr/bin/git config --global core.editor "vim"
     /usr/bin/git config --global user.name "$GIT_CONFIG_NAME"
     /usr/bin/git config --global user.email "$GIT_CONFIG_EMAIL"
     log "Set gitconfig with global user name $GIT_CONFIG_NAME and email $GIT_CONFIG_EMAIL" $yellow
