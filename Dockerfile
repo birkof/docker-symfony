@@ -87,11 +87,8 @@ RUN apt-get autoclean \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Starting php7-fpm
-RUN service php7.0-fpm start
-
-# Exposed port/s (web & xdebug)
-EXPOSE 22 80 9000
+# Exposed port/s
+EXPOSE 22 80
 
 # Working dir
 WORKDIR /var/www
