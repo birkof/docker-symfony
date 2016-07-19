@@ -3,9 +3,6 @@
 set -eu
 export TERM=xterm
 
-BLACKFIRE_CONFIG_FILE="/etc/php/7.0/mods-available/blackfire.ini"
-BLACKFIRE_LOG_FILE="/var/log/php7/blackfire.log"
-
 # Bash Colors
 red=`tput setaf 1`
 green=`tput setaf 2`
