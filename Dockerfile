@@ -32,6 +32,7 @@ RUN apt-get install -yq --no-install-recommends \
     php-xdebug \
     php-redis \
     php-apcu \
+    php-memcache \
     php-memcached \
     php-pear \
     blackfire-php
